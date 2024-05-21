@@ -9,7 +9,7 @@ public class app {
         String cwd = System.getProperty("user.dir");
 
         try {
-            fin = new FileReader("Java0521/src/test.txt");
+            fin = new FileReader("Java0521/test.txt");
             int c;
             while ((c = fin.read()) != -1) {
                 System.out.print((char) c);
