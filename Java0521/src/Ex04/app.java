@@ -10,6 +10,7 @@ public class app {
             for (int i = 0; i < b.length; i++) {
                 fos.write(b[i]);
             }
+            fos.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
