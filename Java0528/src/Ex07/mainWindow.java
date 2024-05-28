@@ -13,6 +13,8 @@ public class mainWindow extends JFrame {
 
         Container container = getContentPane();
         container.setLayout(null);
+        container.setSize(640,480);
+
         label1.setSize(128,20);
         label1.setLocation(30,30);
         container.add(label1);
@@ -40,6 +42,6 @@ public class mainWindow extends JFrame {
     }
     
     public static void main(String[] args) {
-        mainWindow wnd = new mainWindow();
+        mainWindow mainWindow = new mainWindow();
     }
 }
