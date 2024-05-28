@@ -7,6 +7,8 @@ public class mainWindow extends JFrame {
     public mainWindow() {
         setTitle("null Layout");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        setSize(640, 480);
 
         Container container = getContentPane();
         container.setLayout(null);
@@ -27,7 +29,6 @@ public class mainWindow extends JFrame {
         label3.setForeground(new Color(255, 0, 0));
         container.add(label3);
 
-        setSize(640, 480);
         setVisible(true);
     }
 

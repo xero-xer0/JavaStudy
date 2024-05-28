@@ -5,52 +5,42 @@ import java.awt.event.*;
 
 public class mainWindow extends JFrame {
 
-    JLabel label1 = new JLabel("count : 0");
-    int counter = 0;
+    JLabel label1 = new JLabel("key : ");
 
     public mainWindow() {
-        setTitle("counter");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        setTitle("keyboard event");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setSize(640,480);
+
         Container container = getContentPane();
-        container.setLayout(null);
-        container.setSize(640, 480);
+        container.setLayout(null);        
+        label1.setSize(128,20);
+        label1.setLocation(30,30);
         container.add(label1);
-
-        label1.setSize(128, 20);
-        label1.setLocation(100, 100);
-
-        JButton add = new JButton("add");
-        add.setSize(80, 20);
-        add.setLocation(30, 200);
-        container.add(add);
         
-        add.addActionListener(new ActionListener() {
+        container.addKeyListener(new KeyAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                counter++;
-                label1.setText("count : " + counter);
+            public void keyPressed(KeyEvent e) {
+                label1.setText("key char : " + e.getKeyChar() + "," + e.getKeyCode());
+
+                if(e.getKeyCode() == KeyEvent.VK_ADD) {                    
+                    container.setBackground(Color.GREEN);
+                }
+                else if(e.getKeyCode() == KeyEvent.VK_SUBTRACT) {                    
+                    container.setBackground(Color.RED);
+                }
+
             }
         });
 
-        JButton sub = new JButton("sub");
-        sub.setSize(80, 20);
-        sub.setLocation(150, 200);
-        container.add(sub);
-        
-        sub.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                counter--;
-                label1.setText("count : " + counter);
-            }
-        });
+        container.setFocusable(true);
+        container.requestFocus();
 
-        setSize(640, 480);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new mainWindow();
+        mainWindow _wnd = new mainWindow();
+        
     }
 }
