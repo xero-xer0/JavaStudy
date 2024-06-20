@@ -40,24 +40,28 @@ public class Painter extends JFrame {
         lineButton = new JButton("직선");
         lineButton.addActionListener(e -> setCurrentTool("Line"));
         controlPanel.add(lineButton);
-
+        
         rectButton = new JButton("직사각형");
         rectButton.addActionListener(e -> setCurrentTool("Rectangle"));
         controlPanel.add(rectButton);
-
+        
         ovalButton = new JButton("타원");
         ovalButton.addActionListener(e -> setCurrentTool("Oval"));
         controlPanel.add(ovalButton);
-
+        
         eraserButton = new JButton("지우개");
         eraserButton.addActionListener(e -> setCurrentTool("Eraser"));
         controlPanel.add(eraserButton);
-
+        
+                clearButton = new JButton("전체 삭제");
+                clearButton.addActionListener(e -> drawArea.clear());
+                controlPanel.add(clearButton);
+        
         controlPanel.add(new JLabel("선 두께 "));
         lineThicknessSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
         lineThicknessSpinner.addChangeListener(e -> lineThickness = (int) lineThicknessSpinner.getValue());
         controlPanel.add(lineThicknessSpinner);
-
+        
         controlPanel.add(new JLabel("지우개 크기"));
         eraserSizeSpinner = new JSpinner(new SpinnerNumberModel(10, 1, 50, 1));
         eraserSizeSpinner.addChangeListener(e -> eraserSize = (int) eraserSizeSpinner.getValue());
@@ -70,10 +74,6 @@ public class Painter extends JFrame {
         loadButton = new JButton("열기");
         loadButton.addActionListener(e -> loadImage());
         controlPanel.add(loadButton);
-
-        clearButton = new JButton("전체 삭제");
-        clearButton.addActionListener(e -> drawArea.clear());
-        controlPanel.add(clearButton);
 
         add(controlPanel, BorderLayout.NORTH);
 
@@ -257,7 +257,7 @@ public class Painter extends JFrame {
         }
 
         private void drawPoint(int x, int y) {
-            if (currentTool != "Eraser"){
+            if (currentTool != "Eraser" && currentTool != "Oval"){
             g2.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             g2.setPaint(currentColor);
             g2.drawLine(x, y, x, y);
