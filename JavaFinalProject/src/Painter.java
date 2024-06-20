@@ -53,9 +53,9 @@ public class Painter extends JFrame {
         eraserButton.addActionListener(e -> setCurrentTool("Eraser"));
         controlPanel.add(eraserButton);
         
-                clearButton = new JButton("전체 삭제");
-                clearButton.addActionListener(e -> drawArea.clear());
-                controlPanel.add(clearButton);
+        clearButton = new JButton("전체 삭제");
+        clearButton.addActionListener(e -> drawArea.clear());
+        controlPanel.add(clearButton);
         
         controlPanel.add(new JLabel("선 두께 "));
         lineThicknessSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 20, 1));
@@ -89,7 +89,6 @@ public class Painter extends JFrame {
         Color newColor = JColorChooser.showDialog(this, "Choose Color", currentColor);
         if (newColor != null) {
             currentColor = newColor;
-            setCurrentTool("Freeform");
         }
     }
 
@@ -99,6 +98,10 @@ public class Painter extends JFrame {
         int userSelection = fileChooser.showSaveDialog(this);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+            if (!filePath.toLowerCase().endsWith(".png")) {
+                fileToSave = new File(filePath + ".png");
+            }
             try {
                 ImageIO.write(drawArea.getImage(), "png", fileToSave);
             } catch (IOException ex) {
