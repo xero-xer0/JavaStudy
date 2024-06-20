@@ -82,8 +82,6 @@ public class Painter extends JFrame {
                 drawArea.resizeImage(getWidth(), getHeight());
             }
         });
-
-        // Set default selected tool
         setCurrentTool("Freeform");
     }
 
@@ -259,10 +257,12 @@ public class Painter extends JFrame {
         }
 
         private void drawPoint(int x, int y) {
+            if (currentTool != "Eraser"){
             g2.setStroke(new BasicStroke(lineThickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             g2.setPaint(currentColor);
             g2.drawLine(x, y, x, y);
             repaint();
+            }
         }
     }
 
